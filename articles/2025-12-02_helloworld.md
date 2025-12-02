@@ -3,7 +3,7 @@ title: "Hello,World! - cursor"
 emoji: "☀️"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: "topics"
-published: false
+published: true
 publication_name: "public-zenn-contents"
 published_at: "2025-12-02 15:00"
 ---
