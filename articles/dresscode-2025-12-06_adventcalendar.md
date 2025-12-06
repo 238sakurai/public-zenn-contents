@@ -32,7 +32,9 @@ publication_name: "dress_code"
 
 それでは、ここからは各日についてもう少し詳しく書いていきます。
 
-### 1日目
+### 1日目 (12/1(月)) : 全社挨拶・オンボーディング
+
+![PCセットアップの様子](/images/articles/dresscode-2025-12-06_adventcalendar/2025-12-01_09-49-34_339.jpeg)
 
 
 オフィスに入室すると僕の固定席があり、僕専用のMacBookProM4と入館証IDと名刺がありました。
