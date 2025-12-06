@@ -3,7 +3,7 @@ title: "Dress Code 入社1週間経過 - リターンエンジニア"
 emoji: "🧵"
 type: "tech" # tech: 技術記事 / idea: アイデア
 topics: ["オンボーディング", "転職"]
-published: false
+published: true
 publication_name: "dress_code"
 ---
 
