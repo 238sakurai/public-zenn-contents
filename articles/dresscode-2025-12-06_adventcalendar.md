@@ -7,7 +7,7 @@ published: false
 publication_name: "dress_code"
 ---
 
-みなさん、こんにちは。Sakutaro[@saku_238](https://x.com/saku_238) です。  
+みなさん、こんにちは。Sakutaro（X: [@saku_238](https://x.com/saku_238)）です。  
 
 このブログは[Dress Code Advent Calendar 2025](https://adventar.org/calendars/12017)の6日目の記事です！
 
@@ -93,7 +93,7 @@ AI にサポートしてもらいながらも、最終的に手を動かして�
 
 ### 5日目 (12/5(金)) : チームに混ざっていく感覚
 
-金曜日🙌 まずは、[公式X:@dresscode_com](https://x.com/dresscode_com) アカウントの立ち上げからスタートしました。SNS 運用管理は得意領域でもあったため、一任してもらえたのが嬉しいポイントでした。
+金曜日🙌 まずは、公式X（[@dresscode_com](https://x.com/dresscode_com)）アカウントの立ち上げからスタートしました。SNS 運用管理は得意領域でもあったため、一任してもらえたのが嬉しいポイントでした。
 
 そのあと、自分のタスクにも前向きに取り組みつつ、チーム全体では OKR 会で一週間の振り返りと来週以降の方針を確認し、翌週への準備を整えました。
 
