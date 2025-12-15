@@ -3,12 +3,16 @@ title: "自社ブログから技術を勉強 - 2025-12-08 - 2025-12-15"
 emoji: "📝"
 type: "idea" # tech: 技術記事 / idea: アイデア
 topics: ["topics"]
-published: false
+published: true
 ---
 
 ## 1週間の記事を読んだ感想
+Dress Code アドカレ2025の感想を1週間単位で書いていく。
+
 @[card](https://adventar.org/calendars/12017)
 
+先週分の記事
+@[card](https://zenn.dev/saku_238/articles/2025-12-08_blog-dc-memo)
 
 12月8日(月)から14日(日)の１週間、公開されたブログをおさらいする。
 
@@ -16,25 +20,47 @@ published: false
 ### 2025-12-08 : Microsoft Graph API の認証方式を整理｜SaaS開発で検討した3つのアプローチ｜jnishime
 @[card](https://zenn.dev/dress_code/articles/2d41724445a9a3)
 
+- 認証方式を「ユーザー委任 / 顧客側アプリ / SaaS側マルチテナント+Admin Consent」の3択で整理してくれて、迷子になりやすい論点が一気に見える。
+- 「アプリ登録をどこで持つか（顧客テナント or SaaS側）」が、導入の手間・運用コスト・スケーラビリティ・顧客の安心感に直結する、という腹落ちが得られる。
+- 最後の比較表と選択ポイントが実務向けで、個人データ操作/バッチ同期/高セキュリティ要件など、ユースケースで判断しやすい。
 
 ### 2025-12-09 : Dress Code QAチーム立ち上げの軌跡(2025年振り返り)｜うさぴょん 
-@[card](https://zenn.dev/dress_code/articles/2d41724445a9a3)
+@[card](https://zenn.dev/dress_code/articles/6e792505d34e71)
 
+- スタートアップのスピード前提で、全部やるより「今回絶対に守るライン（価値/シナリオ）」を定義してテスト設計する話がリアル。
+- Playwright MCP（自然言語でのUIテスト）と runn（YAMLでAPI E2Eを量産）を組み合わせて、泥臭い物量戦を回す設計が参考になる。
+- QA指摘をラベル設計で可視化し、Critical/Major/進捗%などの「Go/No Go」基準まで落とすことで、QAの価値を「品質の可視化と判断材料」として示している。
 
 ### 2025-12-10 : Self-Hosted Runnerで GitHub Actions のCI/CDを高速化・コスト最適化した｜cottpan
 @[card](https://zenn.dev/dress_code/articles/202685fc7786da)
 
+- GitHub-hosted runnerの「スペック不足・並列上限によるキュー待ち・課金増」を課題として整理し、Self-Hosted Runner導入の意思決定が納得できる。
+- TypeScriptビルドはシングルスレッド性能とメモリが効く、Warm Poolで起動待ちを潰す、Ephemeral Runner＋SSMでセキュリティも担保、など選定軸が実践的。
+- `terraform-aws-github-runner` をベースに、Spot（capacity-optimized）＋PackerでカスタムAMI＋業務時間のみWarm Poolなど、性能とコストのバランスを数値で示している。
+
 ### 2025-12-11 : AI時代のプロダクトデザイナーの生存戦略は、「DRESS CODEというプロダクト」を作ること｜KENJI NUMATA
 @[card](https://note.com/kenjiiii/n/n3b5553aa89d1?sub_rt=share_pw)
+
+- AIでUI生成/自動化が進むほど、表層アウトプット（UIを整える）の希少性が下がる、という前提整理がわかりやすい。
+- 一方で「業務・制度・制約・リスク」を統合して成立させる設計（タスクモデル、状態遷移、情報構造など）はまだ人の領域だ、という線引きが刺さる。
+- 「描く人」から「壊れない構造を設計する人」へ、というメッセージと、複雑性を扱うDRESS CODEがその実践の場、という結論が一貫している。
 
 ### 2025-12-12 : 認証基盤をCognitoからOry Kratosへ：B2B SaaSの「当たり前品質」を守るためのリプレイス戦略｜ぽこひで
 @[card](https://zenn.dev/dress_code/articles/212e5572b3cd9b)
 
+- Cognitoの限界を「Lambdaトリガー肥大化で保守/デバッグが辛い」「ステートレス/JWT前提とステート管理要件の衝突」「マルチテナントとの不適合」の3点で整理されているんだけど、前提知識が必要そうでついていけてない僕。
+- 移行戦略をCognito継続／OSS活用／IDaaS（Auth0）で比較し、創業フェーズならではのリスク（将来の技術的負債）を先に潰しにいく意思決定が学びになる。
+- Ory Kratos（Ory Network含む）を選んだ理由が、DAU課金でスパイクに強い・SaaS↔Self-Hostのポータビリティ・Server Driven UI・データホーミング・B2B必須機能（SSO/マルチテナント）と多面的。
+
 ### 2025-12-13 : wip・・・楽しみ！
+（未公開のため割愛）
 
 ### 2025-12-14 : Dress Codeに来て2ヶ月半が経って｜なたこん
 @[card](https://note.com/natacon/n/n8e79f92e921d?sub_rt=share_pw)
 
+- 入社後に感じた文化として「価値仮説（誰の/どんな負の状態を/どう変える）を先に言語化する」が具体的で、会話の前提が見える。
+- 「全量想定→ロジカル引き算」をやり切る難しさ（帰納と演繹の切り替え、安心できる設計に逃げたくなる）というつまづきが正直で共感する。
+- toCの探索モードから、B2Bの複雑さを“整理して構造化する”モードへのスタンスチェンジが、エンジニア→PM転身のリアルとして読める。
 
 
 
