@@ -3,7 +3,7 @@ title: "GitHub CLI(gh)、ターミナルからGitHubを操作できて便利"
 emoji: "🐙"
 type: "tech"
 topics: ["git", "github", "cli", "コマンドライン"]
-published: true
+published: false
 published_at: 2025-12-28 22:00
 ---
 
