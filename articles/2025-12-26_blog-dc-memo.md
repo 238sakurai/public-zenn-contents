@@ -3,7 +3,7 @@ title: "自社ブログから技術を勉強 - 2025-12-22 - 2025-12-25"
 emoji: "📝"
 type: "idea" # tech: 技術記事 / idea: アイデア
 topics: ["idea"]
-published: false
+published: true
 published_at: 2025-12-29 09:00
 ---
 
