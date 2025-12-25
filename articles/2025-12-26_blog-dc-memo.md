@@ -4,7 +4,7 @@ emoji: "📝"
 type: "idea" # tech: 技術記事 / idea: アイデア
 topics: ["idea"]
 published: true
-published_at: 2025-12-29 09:00
+published_at: 2025-12-26 12:00
 ---
 
 ## 1週間の記事を読んだ感想
