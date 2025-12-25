@@ -3,7 +3,7 @@ title: "gwqでgit worktreeが使いやすくなった"
 emoji: "🌲"
 type: "tech"
 topics: ["git", "worktree", "gwq", "cli", "コマンドライン"]
-published: false
+published: true
 published_at: 2025-12-30 22:00
 ---
 
