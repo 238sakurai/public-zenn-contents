@@ -1,5 +1,5 @@
 ---
-title: "GitHub CLI(gh)、ターミナルからGitHubを操作できて便利"
+title: "技術学習ログ: GitHub CLI(gh)、ターミナルからGitHubを操作できて便利"
 emoji: "🐙"
 type: "tech"
 topics: ["git", "github", "cli", "コマンドライン"]

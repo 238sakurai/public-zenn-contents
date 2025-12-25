@@ -1,5 +1,5 @@
 ---
-title: "Gitコマンド、実は160種類以上あった"
+title: "技術学習ログ: Gitコマンド、実は160種類以上あった"
 emoji: "🔀"
 type: "tech"
 topics: ["git", "github", "コマンドライン", "CLI"]

@@ -1,5 +1,5 @@
 ---
-title: "gwqでgit worktreeが使いやすくなった"
+title: "技術学習ログ: gwqでgit worktreeが使いやすくなった"
 emoji: "🌲"
 type: "tech"
 topics: ["git", "worktree", "gwq", "cli", "コマンドライン"]
