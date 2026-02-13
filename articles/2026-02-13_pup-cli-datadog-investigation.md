@@ -25,7 +25,7 @@ Datadogでの調査といえば、ブラウザでUIを開いてポチポチ操�
 go install github.com/DataDog/pup@latest
 
 # Homebrew でもインストール可能
-brew install datadog/tap/pup
+brew install datadog/pack/pup
 
 # GitHub Releases からバイナリを直接ダウンロードすることもできます
 # https://github.com/DataDog/pup/releases
@@ -169,27 +169,32 @@ AIエージェントがパイプで `python3` に渡すと、**`JSONDecodeError`
 
 **欲しい挙動**: 0件でも `{"data": []}` を返す。あるいは `--output=json` フラグで強制JSON出力。
 
-### 壁2: 集計にはPythonスクリプトが必須
+### 壁2: 集計機能の存在に気づかずPythonスクリプトを書いていた
 
-「日別のエラー件数」「エラーパターン別の内訳」「時間帯ヒストグラム」——これらを見るために、毎回 Python ワンライナーをパイプで書いていました。
+「日別のエラー件数」「エラーパターン別の内訳」——これらを見るために、毎回 Python ワンライナーをパイプで書いていました。
 
-**欲しい機能**:
+……が、実は **`pup logs aggregate` コマンドが既に存在していました**。記事を書いた後に気づきました。
 
 ```bash
-# 日別カウント
-pup logs search --query="status:error" --from="30d" --group-by=date
+# ステータス別のカウント
+pup logs aggregate --query="*" --from="1h" --compute="count" --group-by="status"
 
-# 時間帯別
-pup logs search --query="status:error" --from="1d" --group-by=hour
+# エラーメッセージ別の集計
+pup logs aggregate --query="status:error" --from="7d" --compute="count" --group-by="@error.message"
 
-# エラーメッセージ別
-pup logs search --query="status:error" --from="7d" --group-by="@error.message"
+# 総件数だけ取得
+pup logs aggregate --query="status:error" --from="30d" --compute="count"
 
-# 件数だけ
-pup logs search --query="status:error" --from="30d" --count-only
+# サービス別の平均レスポンスタイム
+pup logs aggregate --query="*" --from="1h" --compute="avg(@duration)" --group-by="service"
+
+# 99パーセンタイルのレイテンシ
+pup logs aggregate --query="service:api" --from="2h" --compute="percentile(@duration, 99)"
 ```
 
-Datadog UIではこれらのグルーピングは標準機能です。CLIでも使えると、スクリプト不要で調査速度が大幅に上がります。
+`--compute` には `count`, `avg`, `sum`, `min`, `max`, `cardinality`, `percentile` などが使え、`--group-by` でフィールド別のグルーピングが可能です。Step 3 の影響範囲調査もこれで大幅に楽になりそうです。
+
+ただし、日別・時間帯別といった **時系列でのグルーピング**（Datadog UIの "Group by > Timestamp" 相当）は `--group-by` だけでは難しく、その用途では引き続き Python スクリプトが必要になります。
 
 ### 壁3: traces コマンドが未実装
 
@@ -215,31 +220,41 @@ pup logs search --query="status:error" -o table \
 
 ### 壁5: タイムゾーンとISO 8601
 
-出力が常にUTCで、JSTへの変換を毎回手動で行いました。また `--from` に ISO 8601 形式が使えず、特定時刻の範囲指定が面倒でした。
+出力が常にUTCで、JSTへの変換を毎回手動で行いました。
 
-**欲しい機能**:
+実は調べてみると、**部分的には既に対応されていました**。
+
+まず **RFC3339（ISO 8601）形式は `--from` / `--to` で既にサポートされています**:
 
 ```bash
-# タイムゾーン指定
-pup logs search --query="..." --timezone="Asia/Tokyo"
-
-# ISO 8601 での絶対時刻指定
+# これは動く！
 pup logs search --query="..." \
   --from="2026-02-13T04:00:00Z" \
   --to="2026-02-13T05:00:00Z"
 ```
 
+また **`pup logs query` コマンドには `--timezone` フラグが存在**します（ただし `logs search` にはありません）:
+
+```bash
+# logs query なら --timezone が使える
+pup logs query --query="service:web" --from="4h" --timezone="Asia/Tokyo"
+```
+
+残る課題としては、`logs search` での `--timezone` サポートと、出力側のタイムゾーン変換です。
+
 ## 個人的な優先度
 
-正直、一番つらかったのは **空結果でJSONが返らない** 問題です。Cursorに調査させるとパイプが壊れて何度もやり直しになりました。次点で集計機能。毎回Pythonワンライナーを書くのは地味にしんどい。
+正直、一番つらかったのは **空結果でJSONが返らない** 問題です。Cursorに調査させるとパイプが壊れて何度もやり直しになりました。集計機能は `logs aggregate` を見つけたので解消しましたが、時系列グルーピングはまだ課題です。
 
-| 優先度 | 機能 | 体感 |
-|---|---|---|
-| 🔴 高 | 空結果時も有効なJSON出力 | これがないとパイプラインが毎回壊れる |
-| 🔴 高 | 集計・グルーピング機能 | Pythonワンライナー書くのが毎回つらい |
-| 🟡 中 | traces get コマンド | APMのURLから調査を始めることが多いので |
-| 🟡 中 | table出力のカラム指定 | 欲しいカラムが出なくて結局JSONを見る |
-| 🟢 低 | タイムゾーン・ISO 8601 | あったら嬉しいけどなくても困らない |
+| 優先度 | 機能 | 状態 | 体感 |
+|---|---|---|---|
+| 🔴 高 | 空結果時も有効なJSON出力 | 未対応 | これがないとパイプラインが毎回壊れる |
+| 🟡 中 | traces get コマンド | 未実装 | APMのURLから調査を始めることが多いので |
+| 🟡 中 | table出力のカラム指定 | 未対応 | 欲しいカラムが出なくて結局JSONを見る |
+| 🟡 中 | 時系列グルーピング（日別・時間帯別） | 未対応 | aggregate の group-by だけでは時間軸の集計が難しい |
+| ✅ 解決 | 集計・グルーピング機能 | `logs aggregate` で対応済み | `--compute` と `--group-by` で基本的な集計は可能 |
+| ✅ 解決 | ISO 8601 形式の時刻指定 | `--from`/`--to` で RFC3339 対応済み | `--from="2026-02-13T04:00:00Z"` のように指定可能 |
+| ✅ 解決 | タイムゾーン指定 | `logs query` で `--timezone` 対応済み | `logs search` には未対応 |
 
 ## AIエージェントにCLIを使わせてみて思ったこと
 
