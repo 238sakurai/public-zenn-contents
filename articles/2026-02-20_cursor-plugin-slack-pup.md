@@ -1,6 +1,6 @@
 ---
-title: "Cursor Plugin で Slack 連携 — pup CLI と組み合わせてアラート調査をワンストップにした話"
-emoji: "🐕"
+title: "Cursor Plugin で Slack 連携 — pup CLI と組み合わせてアラート調査を1ステップ改善できた"
+emoji: "🐶"
 type: "tech"
 topics: ["cursor", "slack", "datadog", "ai", "plugin"]
 published: false
@@ -9,15 +9,19 @@ publication_name: "dress_code"
 
 ## はじめに
 
-花粉が飛び始めましたね。目はかゆいし鼻は止まらないし、家もパソコンも開くウィンドウは1枚でも減らしたい季節です。
+前回 pup（子犬）と散歩して Datadog 調査を自動化の検証しました。今回はそこからもう「ワン」ステップ改善できるかを検証した話です。
 
 前回の記事「[Datadogのpupと戯れあったメモ](https://zenn.dev/saku_because/articles/2026-02-13_pup-cli-datadog-investigation)」では、pup CLI を使って Datadog のエラー調査を自動化しました。ただ、調査結果を Slack に貼るところは結局手動コピペのままでした。
 
 「ここも自動化したいなぁ」と思っていたら、その翌週の 2026年2月17日に **Cursor Marketplace** がリリースされました。
 
-リリース自体は知っていたんですが、Plugin の詳細を知ったのは翌日の [Cursor Party Tokyo feat. Ryo Lu](https://aiau.connpass.com/event/383750/) の懇親会でした。[@kinopee_ai](https://x.com/kinopee_ai)さんにCursor Marketplace や Slack Plugin の仕組みを教えてもらったのが始まりです。
+Pluginのリリースを知った翌日 Cursorチームのデザインリード Ryo氏が来日された勉強会に参加しました。
 
-試してみたら、**アラート検知 → pup で調査 → Slack スレッドに返信**まで Cursor の中だけで完結してしまったので、そのときの話を書きます。
+@[card](https://aiau.connpass.com/event/383750/)
+
+その時の懇親会で[@kinopee_ai](https://x.com/kinopee_ai)さんと [@p388 cell Ꙩ→Ꙫ→Ꙭ→ꙮ→◌](https://x.com/p388cell)さんで Cursor Marketplace や Slack Plugin の仕組みを教えてもらったのが始まりです。
+
+それを今朝試してみたら、**アラート検知 → pup で調査 → Slack スレッドに返信**まで Cursor の中だけで完結してしまったので、そのときの話を書きます。
 
 ## Cursor Marketplace が来た
 
@@ -229,4 +233,4 @@ pup CLI で Datadog 調査を自動化した前回に続いて、Slack Plugin �
 
 前回は pup に `traces` コマンドが欲しいと書きましたが、今回は Slack Plugin に**ファイル添付**が欲しいです。
 
-花粉の季節、余計なウィンドウを開かずに仕事ができる。それだけで今日はよしとします。🐕
+pup と一緒に「ワン」ステップ改善できました。花粉の季節、余計なウィンドウを開かずに仕事ができる。それだけで今日はよしとします。🐕
