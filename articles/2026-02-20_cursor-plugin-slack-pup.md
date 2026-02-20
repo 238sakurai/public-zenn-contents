@@ -32,7 +32,7 @@ publication_name: "dress_code"
 
 ![Plugin 追加ダイアログ](/images/articles/2026-02-20_cursor-plugin-slack-pup/plugin-dialog.png)
 
-エディタ内で `/add-plugin` と打つと Plugin を検索・追加できます。Slack、Figma、Stripe、AWS、Prisma あたりが並んでいて、眺めているだけでワクワクします。
+Slack、Figma、Stripe、AWS、Prisma あたりが並んでいて、眺めているだけでワクワクします。
 
 ![Cursor Marketplace](/images/articles/2026-02-20_cursor-plugin-slack-pup/marketplace.png)
 
