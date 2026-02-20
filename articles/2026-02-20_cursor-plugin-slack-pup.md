@@ -164,35 +164,7 @@ Slack のメッセージは 5,000 文字制限もあるので、長い調査結�
 
 ### ファイル添付はできない
 
-スニペットや Markdown ファイルを添付したい場面があったんですが、現時点の Slack Plugin はテキストメッセージのみ対応です。ログの生データを貼りたいときにちょっと困ります。
-
-## Before / After
-
-前回（pup CLI のみ）と今回（pup CLI + Slack Plugin）を並べてみます。
-
-### Before: pup CLI のみ
-
-```mermaid
-flowchart LR
-  A["Slack で\nアラート確認"] --> B["Cursor に\ntrace ID を渡す"]
-  B --> C["pup CLI で\nログ検索"]
-  C --> D["Cursor が\nエラー分析"]
-  D --> E["結果を\n手動コピペ"]
-  E --> F["Slack に\n貼り付け"]
-```
-
-調査は自動化できたけど、最後の「結果をコピペして Slack に貼る」だけ手動。ブラウザを開いて、スレッドを探して、整形して貼り付ける。地味にだるい。
-
-### After: pup CLI + Slack Plugin
-
-```mermaid
-flowchart LR
-  A["Cursor に\ntrace ID を渡す"] --> B["pup CLI で\nログ検索"]
-  B --> C["Cursor が\nエラー分析"]
-  C --> D["Slack Plugin で\nスレッド返信"]
-```
-
-「調査して」「Slack に投稿して」の2回の指示だけ。2件目以降はフローが確立しているので、ほぼ待つだけです。1件あたりの対応時間は、体感で5〜10分から1〜2分になりました。
+スニペットや Markdown ファイルを添付したい場面があったんですが、現時点の Slack Plugin はテキストメッセージのみ対応です。ログの生データを貼りたいときにちょっと困りました。
 
 ## Prisma Plugin もあった。
 
@@ -206,10 +178,10 @@ Skills 40個、Rules 2個、MCPs 2個（Prisma Local / Remote）、Hooks 2個。
 
 ```mermaid
 flowchart LR
-  A["Slack\nアラート検知"] --> B["pup CLI\nログ検索"]
-  B --> C["Cursor\nエラー分析"]
-  C --> D["Prisma\nDB参照"]
-  D --> E["Slack Plugin\n調査結果投稿"]
+  A["Slack<br>アラート検知"] --> B["pup CLI<br>ログ検索"]
+  B --> C["Cursor<br>エラー分析"]
+  C --> D["Prisma<br>DB参照"]
+  D --> E["Slack Plugin<br>調査結果投稿"]
 ```
 
 **やばい。全部つながる。**
@@ -226,7 +198,7 @@ Prisma Plugin のスキル一覧には `prisma-cli-db-execute` や `prisma-cli-d
 
 ## まとめ
 
-pup CLI で Datadog 調査を自動化した前回に続いて、Slack Plugin を足したら**報告まで(ほぼ)自動化**できました。
+「調査して」「Slack に投稿して」の2回の指示だけ。2件目以降はフローが確立しているので、ほぼ待つだけです。1件あたりの対応時間は、体感で5〜10分から1〜2分になりました。
 
 - ブラウザを一度も開かず、調査から報告まで Cursor 内で完結した
 - Slack のテーブルが崩れて焦ったけど、箇条書きフォーマットに落ち着いた
