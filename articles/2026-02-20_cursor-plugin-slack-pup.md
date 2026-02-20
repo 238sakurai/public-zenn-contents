@@ -18,7 +18,7 @@ publication_name: "dress_code"
 
 「ここも自動化したいなぁ」と思っていたら、その翌週の 2026年2月17日に **Cursor Marketplace** がリリースされました。
 
-Pluginのリリースを知った翌日 Cursorチームのデザインリード Ryo氏が来日された勉強会に参加しました。
+翌日たまたま、Cursor のデザインリード Ryo 氏が来日して開催された勉強会に参加しました。
 
 @[card](https://aiau.connpass.com/event/383750/)
 
