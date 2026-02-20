@@ -3,7 +3,7 @@ title: "Cursor Plugin で Slack 連携 — pup CLI と組み合わせてアラ�
 emoji: "🐶"
 type: "tech"
 topics: ["cursor", "slack", "datadog", "ai", "plugin"]
-published: false
+published: true
 publication_name: "dress_code"
 ---
 
@@ -14,15 +14,15 @@ publication_name: "dress_code"
 前回の記事 : Datadogのpupと戯れあったメモ
 @[card](https://zenn.dev/saku_because/articles/2026-02-13_pup-cli-datadog-investigation)
 
-前回は AIエージェントが pup CLI を使って Datadog のエラー調査を調査してくれました。ただ、調査結果を Slack に貼るところは結局手動コピペのままでした。
+前回は AIエージェントが pup CLI を使って Datadog のアラート調査してくれるところまではできました。ただ、調査結果を Slack に貼るところは結局手動コピペのままでした。
 
 「ここも自動化したいなぁ」と思っていたら、その翌週の 2026年2月17日に **Cursor Marketplace** がリリースされました。
 
-翌日たまたま、Cursor のデザインリード Ryo 氏が来日して開催された勉強会に参加しました。
+翌日たまたま、Cursor のデザインリード [Ryo Lu]()氏が来日して開催された勉強会に参加しました。
 
 @[card](https://aiau.connpass.com/event/383750/)
 
-その時の懇親会で[@kinopee_ai](https://x.com/kinopee_ai)さんと [@p388 cell Ꙩ→Ꙫ→Ꙭ→ꙮ→◌](https://x.com/p388cell)さんで Cursor Marketplace や Slack Plugin の仕組みを教えてもらったのが始まりです。
+その時の懇親会で[@kinopee_ai](https://x.com/kinopee_ai)さんから Cursor Marketplace や Slack Plugin の仕組みを教えてもらったのが始まりです（[@p388 cell Ꙩ→Ꙫ→Ꙭ→ꙮ→◌](https://x.com/p388cell)さんと一緒に聞いていました）。
 
 それを今朝試してみたら、**アラート検知 → pup で調査 → Slack スレッドに返信**まで Cursor の中だけで完結してしまったので、そのときの話を書きます。
 
@@ -69,7 +69,7 @@ flowchart LR
   C --> D["Slack Plugin<br>スレッド返信"]
 ```
 
-前回は エラー調査 まではできていて、スレッド返信 だけ手動コピペでした。今回はそのスレッド返信を Plugin に任せれるかの検証です。
+前回は エラー調査 まではできていて、スレッド返信 だけ手動コピペでした。今回はそのスレッド返信を Plugin に任せられるかの検証です。
 
 ### Step 1: Slack のアラートから Trace ID をもらう
 
@@ -118,7 +118,7 @@ pup logs search \
 
 調査が終わったあと、Cursor に「このスレッドに結果を投稿して」と URL を渡しました。
 
-Cursor は Slack の URL から Channel ID と Thread TS を勝手に抽出して、`slack_send_message` でスレッドに返信してくれます。
+Cursor は Slack の URL から Channel ID と Thread TS を自動的に抽出して、`slack_send_message` でスレッドに返信してくれます。
 
 ```
 Slack URL: https://xxx.slack.com/archives/CXXXXXXXXXX/p1234567890123456
