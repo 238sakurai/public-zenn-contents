@@ -4,6 +4,7 @@ emoji: "🐶"
 type: "tech"
 topics: ["datadog", "cli", "ai", "monitoring"]
 published: true
+publication_name: "dress_code"
 ---
 
 ## はじめに
@@ -254,4 +255,4 @@ pup CLI、登場したばかりですが普通にDatadogのログ調査に使え
 
 まだ荒削りな部分はあるものの、開発が活発なプロジェクトなので今後に期待しています。気が向いたらIssueでも立ててみようかなと思います。
 
-冒頭で「我が家は愛犬家一家です」と書きましたが、Datadogの子犬（pup）もAIエージェントと組み合わせれば立派な **AI犬** ですね。よろしくメカドッグ！🐕‍🦺
+冒頭で「我が家は愛犬家一家です」と書きましたが、Datadogの子犬（pup）もAIエージェントと組み合わせれば立派な **AI犬** ですね。🐕‍🦺
