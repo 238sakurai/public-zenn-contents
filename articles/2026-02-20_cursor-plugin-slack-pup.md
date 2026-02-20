@@ -65,11 +65,11 @@ Marketplace から Slack Plugin をインストールすると、OAuth 認証の
 ```mermaid
 flowchart LR
   A["Slack<br>アラート検知"] --> B["pup CLI<br>ログ検索"]
-  B --> C["Cursor<br>エラー分析"]
+  B --> C["Cursor<br>エラー調査"]
   C --> D["Slack Plugin<br>スレッド返信"]
 ```
 
-前回は C まではできていて、D だけ手動コピペでした。今回はその D を Plugin に任せます。
+前回は エラー調査 まではできていて、スレッド返信 だけ手動コピペでした。今回はそのスレッド返信を Plugin に任せれるかの検証です。
 
 ### Step 1: Slack のアラートから Trace ID をもらう
 
