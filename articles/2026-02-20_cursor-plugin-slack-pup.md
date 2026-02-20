@@ -9,9 +9,12 @@ publication_name: "dress_code"
 
 ## はじめに
 
-前回 pup（子犬）と散歩して Datadog 調査を自動化の検証しました。今回はそこからもう「ワン」ステップ改善できるかを検証した話です。
+前回、pup コマンドを使って Datadog からのアラート調査を検証しました。今回はそこからもう1ステップ改善できるかを検証した話です。
 
-前回の記事「[Datadogのpupと戯れあったメモ](https://zenn.dev/saku_because/articles/2026-02-13_pup-cli-datadog-investigation)」では、pup CLI を使って Datadog のエラー調査を自動化しました。ただ、調査結果を Slack に貼るところは結局手動コピペのままでした。
+前回の記事 : Datadogのpupと戯れあったメモ
+@[card](https://zenn.dev/saku_because/articles/2026-02-13_pup-cli-datadog-investigation)
+
+前回は AIエージェントが pup CLI を使って Datadog のエラー調査を調査してくれました。ただ、調査結果を Slack に貼るところは結局手動コピペのままでした。
 
 「ここも自動化したいなぁ」と思っていたら、その翌週の 2026年2月17日に **Cursor Marketplace** がリリースされました。
 
@@ -233,4 +236,4 @@ pup CLI で Datadog 調査を自動化した前回に続いて、Slack Plugin �
 
 前回は pup に `traces` コマンドが欲しいと書きましたが、今回は Slack Plugin に**ファイル添付**が欲しいです。
 
-pup と一緒に「ワン」ステップ改善できました。花粉の季節、余計なウィンドウを開かずに仕事ができる。それだけで今日はよしとします。🐕
+pup と一緒に「ワン」ステップ改善できました。これからの花粉の季節、余計なウィンドウを開かずに仕事ができる。それだけで今日はよしとします。🐕
