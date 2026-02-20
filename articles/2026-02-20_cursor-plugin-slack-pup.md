@@ -64,9 +64,9 @@ Marketplace から Slack Plugin をインストールすると、OAuth 認証の
 
 ```mermaid
 flowchart LR
-  A["Slack\nアラート検知"] --> B["pup CLI\nログ検索"]
-  B --> C["Cursor\nエラー分析"]
-  C --> D["Slack Plugin\nスレッド返信"]
+  A["Slack<br>アラート検知"] --> B["pup CLI<br>ログ検索"]
+  B --> C["Cursor<br>エラー分析"]
+  C --> D["Slack Plugin<br>スレッド返信"]
 ```
 
 前回は C まではできていて、D だけ手動コピペでした。今回はその D を Plugin に任せます。
